@@ -5,7 +5,7 @@ mod consts;
 mod data;
 
 pub fn init(token: String, org: String) -> OpenAI {
-    return OpenAI::new(token, org);
+    OpenAI::new(token, org)
 }
 
 #[cfg(test)]
@@ -18,6 +18,6 @@ mod tests {
         let org: String = "organization_name".to_owned();
         let result = init(token, org);
 
-        assert_eq!(result.org.is_empty(), false)
+        assert!(result.org.is_empty() == false)
     }
 }
