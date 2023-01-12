@@ -18,6 +18,6 @@ mod tests {
         let org: String = "organization_name".to_owned();
         let result = init(token, org);
 
-        assert!(result.org.is_empty() == false)
+        assert!(!result.org.is_empty())
     }
 }
