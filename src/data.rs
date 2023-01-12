@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Permission {
@@ -33,4 +33,3 @@ pub struct ModelResponse {
     object: String,
     data: Vec<Model>,
 }
-
