@@ -1,6 +1,7 @@
 use std::error::Error;
 
 use async_trait::async_trait;
+use mockall::automock;
 use reqwest::{Client, StatusCode};
 
 use crate::{
@@ -15,20 +16,21 @@ trait RequestBuilderUtils {
 }
 
 #[async_trait]
-trait ClientBase {
+#[automock]
+pub trait ClientBase {
     fn new(token: String, org: String) -> Self;
     async fn models(&self) -> Result<ModelResponse>;
 }
-struct ChatGPT {
+pub struct OpenAI {
     http_client: Client,
     token: String,
-    org: String,
+    pub org: String,
 }
 
 #[async_trait]
-impl ClientBase for ChatGPT {
-    fn new(token: String, org: String) -> ChatGPT {
-        ChatGPT {
+impl ClientBase for OpenAI {
+    fn new(token: String, org: String) -> OpenAI {
+        OpenAI {
             http_client: Client::new(),
             token,
             org,

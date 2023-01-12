@@ -1,9 +1,11 @@
+use client::{ClientBase, OpenAI};
+
 pub mod client;
 mod consts;
 mod data;
 
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+pub fn init(token: String, org: String) -> OpenAI {
+    return OpenAI::new(token, org);
 }
 
 #[cfg(test)]
@@ -12,7 +14,10 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        let token: String = "api_key".to_owned();
+        let org: String = "organization_name".to_owned();
+        let result = init(token, org);
+
+        assert_eq!(result.org.is_empty(), false)
     }
 }
